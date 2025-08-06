@@ -1,0 +1,236 @@
+<!-- index.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodFiesta - Order Delicious Food Online</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="navbar">
+<div class="logo">🍽️ FoodFiesta</div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-content">
+<h1>Order Delicious Food Online</h1>
+<p>Check your favorite meals delivery location availability</p>
+<input id="search-input" placeholder="Search by city or cuisine..." type="text"/>
+<button class="btn" onclick="handleSearch()">Search</button>
+<a class="btn" href="menu.html">Order Now</a>
+</div>
+</section>
+<section class="categories">
+<h2>Explore Categories</h2>
+<div class="category-grid">
+<a href="menu.html#pizza"><div class="category-card">🍕 Pizza</div></a>
+<a href="menu.html#burger"><div class="category-card">🍔 Burger</div></a>
+<a href="menu.html#biryani"><div class="category-card">🍛 Biryani</div></a>
+<a href="menu.html#pasta"><div class="category-card">🍝 Pasta</div></a>
+<a href="menu.html#desserts"><div class="category-card">🍩 Desserts</div></a>
+<a href="menu.html#salads"><div class="category-card">🥗 Salads</div></a>
+</div>
+</section>
+<section class="restaurants">
+<h2>Top Restaurants</h2>
+<div class="restaurant-list">
+<div class="restaurant-card">
+<img alt="Restaurant 1" src="restaurant1.jpeg"/>
+<h3>Spice Hub</h3>
+<p>⭐ 4.5 | 30 min</p>
+</div>
+<div class="restaurant-card">
+<img alt="Restaurant 2" src="restaurant2.jpeg"/>
+<h3>Pizza Mania</h3>
+<p>⭐ 4.2 | 25 min</p>
+</div>
+<div class="restaurant-card">
+<img alt="Restaurant 3" src="restaurant3.jpeg"/>
+<h3>Biryani House</h3>
+<p>⭐ 4.7 | 35 min</p>
+</div>
+</div>
+</section>
+<section class="why-choose-us">
+<h2>Why Choose FoodFiesta?</h2>
+<div class="features-grid">
+<div class="feature-card fade-in">
+<i class="fas fa-shipping-fast"></i>
+<h3>Fast Delivery</h3>
+<p>We deliver your food in record time, always hot and fresh.</p>
+</div>
+<div class="feature-card fade-in" style="animation-delay: 0.3s;">
+<i class="fas fa-star"></i>
+<h3>Top Rated</h3>
+<p>Our partner restaurants are rated by thousands of happy customers.</p>
+</div>
+<div class="feature-card fade-in" style="animation-delay: 0.6s;">
+<i class="fas fa-leaf"></i>
+<h3>Fresh Ingredients</h3>
+<p>Every meal is made with the freshest, high-quality ingredients.</p>
+</div>
+</div>
+</section>
+<section class="testimonials">
+<h2>What Our Customers Say</h2>
+<div class="testimonial-slider">
+<div class="testimonial active">
+<p>"FoodFiesta is amazing! Always delivers on time!"</p>
+<span>- Rani, Vijayawada</span>
+</div>
+<div class="testimonial">
+<p>"Great taste and quality. Highly recommended."</p>
+<span>- Thulasi, Visakhapatnam</span>
+</div>
+<div class="testimonial">
+<p>"Easy to use and excellent customer service."</p>
+<span>- Alija, Amaravati</span>
+</div>
+<div class="testimonial">
+<p>"Excellent taste without knowing the excellent meaning, Superb."</p>
+<span>- Harish, Visakhapatnam</span>
+</div>
+<div class="testimonial">
+<p>"FoodFiesta is excellent! I Always want to eat more!"</p>
+<span>- Suguna, Vijayawada</span>
+</div>
+<div class="testimonial active">
+<p>"World's great taste and services from FoodFiesta particularly the JELLYFISH soup and biryani."</p>
+<span>- Ravi, Amaravati</span>
+</div>
+</div>
+</section>
+<section class="newsletter">
+<h2>Subscribe for Special Offers</h2>
+<form class="newsletter-form" onsubmit="return subscribeUser()">
+<input id="email" placeholder="Enter your email" required="" type="email"/>
+<button type="submit">Subscribe</button>
+</form>
+</section>
+<section class="order-tracking">
+<h2>Track Your Order</h2>
+<div class="tracking-bar">
+<div class="step completed">Order Placed</div>
+<div class="step completed">Preparing</div>
+<div class="step current">Out for Delivery</div>
+<div class="step">Delivered</div>
+</div>
+</section>
+<script>
+  // Testimonials Slider Logic
+  let currentSlide = 0;
+  const testimonials = document.querySelectorAll('.testimonial');
+  setInterval(() => {
+    testimonials[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % testimonials.length;
+    testimonials[currentSlide].classList.add('active');
+  }, 4000);
+
+  // Newsletter Form
+  function subscribeUser() {
+    const email = document.getElementById('email').value;
+    alert("Thank you for subscribing, " + email + "!");
+    return false; // prevent actual form submission
+  }
+</script>
+<script>
+    function handleSearch() {
+      const input = document.getElementById('search-input').value.toLowerCase().trim();
+      const supportedCities = ['vijayawada', 'visakhapatnam', 'pithapuram', 'amaravati'];
+
+      if (supportedCities.includes(input)) {
+        alert('✅ Food delivery available in ' + capitalize(input));
+        document.getElementById('search-input').style.borderColor = 'green';
+      } else if (input.length > 0) {
+        alert('❌ Sorry, delivery is not available in this area.');
+        document.getElementById('search-input').style.borderColor = 'red';
+      } else {
+        document.getElementById('search-input').style.borderColor = '#ccc';
+      }
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  </script>
+<footer>
+<p>© 2025 FoodFiesta. All rights reserved.</p>
+</footer>
+
+<!-- Floating Buttons -->
+<div class="floating-buttons">
+  <!-- Main Navigation -->
+  <a class="float-btn" href="index.html" data-label="Home"><i class="fas fa-home"></i></a>
+  <a class="float-btn" href="menu.html" data-label="Menu"><i class="fas fa-utensils"></i></a>
+  <a class="float-btn" href="cart.html" data-label="Cart"><i class="fas fa-shopping-cart"></i></a>
+<a class="float-btn" href="myorders.html" title="My Orders"><i class="fas fa-box-open"></i></a>
+  <a class="float-btn" href="login.html" data-label="Login"><i class="fas fa-sign-in-alt"></i></a>
+  <a class="float-btn" href="signup.html" data-label="Signup"><i class="fas fa-user-plus"></i></a>
+  
+  <!-- Existing Buttons -->
+  <a class="float-btn" href="about.html" data-label="About"><i class="fas fa-info-circle"></i></a>
+  <a class="float-btn" href="contact.html" data-label="Contact"><i class="fas fa-envelope"></i></a>
+</div>
+
+<style>
+  .floating-buttons {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 9999;
+  }
+
+  .float-btn {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #ff4d4f, #ff6f61);
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .float-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #ff6f61, #ff4d4f);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.3);
+  }
+
+  .float-btn::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 60px;
+    background: #333;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateY(-50%);
+    top: 50%;
+    pointer-events: none;
+  }
+
+  .float-btn:hover::after {
+    opacity: 1;
+    right: 65px;
+  }
+</style>
+</body>
+</html>
